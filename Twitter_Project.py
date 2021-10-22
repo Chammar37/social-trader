@@ -1,13 +1,16 @@
 import tweepy
 from tweepy import StreamListener
-from  tweepy_credentials import API_KEY, API_SECRET_KEY, ACCESS_TOKEN, ACCESS_TOKEN_SECRET 
+import re
+from tweepy_credentials import API_KEY, API_SECRET_KEY, ACCESS_TOKEN, ACCESS_TOKEN_SECRET
 
 # Getting Stream
 class MaxListener(StreamListener):
     def on_status(self, status):
         if (status.user.id_str == '714640046888984577'):
             if ('$' in status.text):
-                return print(status.text)
+                ticker = re.findall(r'[$][A-Za-z][\S]*', str(status.text))
+                ticker = ticker[0].replace('$', '')
+                return print(ticker)
 
     def on_error(self, status_code):
         if status_code == 420:
@@ -20,12 +23,16 @@ class MaxListener(StreamListener):
 # ACCESS_TOKEN_SECRET = 'EE3sJuZ1dBG9L9q8dzxAuD5Zv1sLOMNgDJxlc58u04DD6'
 
 # Starting Stream
+
+
 class MaxStream():
     def __init__(self, auth, listener):
         self.stream = tweepy.Stream(auth=auth, listener=listener)
 
     def start(self):
-        return self.stream.filter(follow=['714640046888984577'])
+        # follow=['714640046888984577']
+        return self.stream.filter( follow=['714640046888984577'])
+
 
 # Main method
 if __name__ == "__main__":

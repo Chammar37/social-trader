@@ -1,2 +1,6 @@
 1. Get tweets from twitter from a specific user
-2. 
+2. Get Substraing so only return 'AMC' from '$AMC' or '$AMC will blow up' (only get the first ticker)
+3. Look into a way to maintianing a storage system so we get the ticker the first time it is called by the account
+4. Understand the broker's API
+5. Implement the broker's api to our code
+6. Test 
