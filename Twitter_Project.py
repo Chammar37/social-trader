@@ -1,5 +1,6 @@
 import tweepy
 from tweepy import StreamListener
+import tweepy_credentials
 
 # Getting Stream
 class MaxListener(StreamListener):
