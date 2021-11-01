@@ -2,9 +2,11 @@ import tweepy
 from tweepy import StreamListener
 import re
 from tweepy_credentials import API_KEY, API_SECRET_KEY, ACCESS_TOKEN, ACCESS_TOKEN_SECRET
+# Credentials imported from seperate class
 
 # Getting Stream
 class MaxListener(StreamListener):
+    #Get Twitter user.id from twitter api site
     def on_status(self, status):
         if (status.user.id_str == '714640046888984577'):
             if ('$' in status.text):
@@ -16,15 +18,8 @@ class MaxListener(StreamListener):
         if status_code == 420:
             return False
 
-# Keys from Twitter
-# API_KEY = 'E6EnVEln9E4XubkgUNec5S87p'
-# API_SECRET_KEY = 'Soo0CC2gusNpBJiE5SXXGcawclZC9hXWgY5LWDGze6KvNHBh9m'
-# ACCESS_TOKEN = '1032147310304808961-DYpRYrehYu3o7bw4r1kvKRZ9HKxPHU'
-# ACCESS_TOKEN_SECRET = 'EE3sJuZ1dBG9L9q8dzxAuD5Zv1sLOMNgDJxlc58u04DD6'
 
-# Starting Stream
-
-
+# Seperate class for Starting Stream
 class MaxStream():
     def __init__(self, auth, listener):
         self.stream = tweepy.Stream(auth=auth, listener=listener)
@@ -45,4 +40,4 @@ if __name__ == "__main__":
 
     stream = MaxStream(auth, listener)
     stream.start()
-    print("moving to on status")
+    print("moving to on status") #stream started
